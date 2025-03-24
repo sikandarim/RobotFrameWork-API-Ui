@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.2 on darwin)" generated="2025-03-24T14:10:06.675063" rpa="false" schemaversion="5">
+<suite id="s1" name="RobotFrameWork" source="/Users/mariamsikandari/Desktop/RobotFrameWork">
+<suite id="s1-s1" name="API" source="/Users/mariamsikandari/Desktop/RobotFrameWork/API">
+<suite id="s1-s1-s1" name="testApiSample" source="/Users/mariamsikandari/Desktop/RobotFrameWork/API/testApiSample.robot">
+<test id="s1-s1-s1-t1" name="Add Book into Library DataBase" line="16">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-03-24T14:10:06.750018" level="INFO">&amp;{req_body} = { name=RobotFramework | isbn=982253 | aisle=324353 }</msg>
+<var>&amp;{req_body}</var>
+<arg>name=RobotFramework</arg>
+<arg>isbn=982253</arg>
+<arg>aisle=324353</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-03-24T14:10:06.749658" elapsed="0.000381"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-24T14:10:06.750420" level="FAIL">Variable '${base_url}' not found.</msg>
+<arg>${base_url}/Library/Addbook.php</arg>
+<arg>json=${req_body}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request.</doc>
+<status status="FAIL" start="2025-03-24T14:10:06.750125" elapsed="0.000315">Variable '${base_url}' not found.</status>
+</kw>
+<status status="FAIL" start="2025-03-24T14:10:06.749226" elapsed="0.001305">Variable '${base_url}' not found.</status>
+</test>
+<doc>To validate the API tests</doc>
+<status status="FAIL" start="2025-03-24T14:10:06.688959" elapsed="0.061742"/>
+</suite>
+<status status="FAIL" start="2025-03-24T14:10:06.688419" elapsed="0.062503"/>
+</suite>
+<status status="FAIL" start="2025-03-24T14:10:06.676114" elapsed="0.074970"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="RobotFrameWork" id="s1" pass="0" fail="1" skip="0">RobotFrameWork</stat>
+<stat name="API" id="s1-s1" pass="0" fail="1" skip="0">RobotFrameWork.API</stat>
+<stat name="testApiSample" id="s1-s1-s1" pass="0" fail="1" skip="0">RobotFrameWork.API.testApiSample</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-03-24T14:10:06.688993" level="ERROR">Error in file '/Users/mariamsikandari/Desktop/RobotFrameWork/API/testApiSample.robot' on line 7: Setting variable '&amp;{base_url}' failed: Invalid dictionary variable item 'https://rahulshettyacademy.com'. Items must use 'name=value' syntax or be dictionary variables themselves.</msg>
+</errors>
+</robot>

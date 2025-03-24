@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.2 on darwin)" generated="2025-03-24T14:28:05.978281" rpa="false" schemaversion="5">
+<suite id="s1" name="testApiSample" source="/Users/mariamsikandari/Desktop/RobotFrameWork/API/testApiSample.robot">
+<test id="s1-t1" name="Play around with Dictinoary" line="11">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-03-24T14:28:06.061845" level="INFO">&amp;{data} = { name=rahulshetty | course=robot | website=rahulshettyacademy.com }</msg>
+<var>&amp;{data}</var>
+<arg>name=rahulshetty</arg>
+<arg>course=robot</arg>
+<arg>website=rahulshettyacademy.com</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.061685" elapsed="0.000183"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-24T14:28:06.062036" level="INFO">{'name': 'rahulshetty', 'course': 'robot', 'website': 'rahulshettyacademy.com'}</msg>
+<arg>${data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.061959" elapsed="0.000099"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${data}</arg>
+<arg>name</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.062115" elapsed="0.000066"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-24T14:28:06.062286" level="INFO">rahulshetty</msg>
+<arg>${data}[name]</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.062235" elapsed="0.000069"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-24T14:28:06.062418" level="INFO">${url} = rahulshettyacademy.com</msg>
+<var>${url}</var>
+<arg>${data}</arg>
+<arg>website</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.062355" elapsed="0.000072"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-24T14:28:06.062515" level="INFO">rahulshettyacademy.com</msg>
+<arg>${url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.062475" elapsed="0.000055"/>
+</kw>
+<tag>API</tag>
+<status status="PASS" start="2025-03-24T14:28:06.061236" elapsed="0.001369"/>
+</test>
+<test id="s1-t2" name="Add Book into Library DataBase" line="21">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-03-24T14:28:06.062988" level="INFO">&amp;{req_body} = { name=RobotFramework | isbn=947303 | aisle=324534 | author=rahulshetty }</msg>
+<var>&amp;{req_body}</var>
+<arg>name=${book_name}</arg>
+<arg>isbn=947303</arg>
+<arg>aisle=324534</arg>
+<arg>author=rahulshetty</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.062861" elapsed="0.000141"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-24T14:28:06.807926" level="INFO">POST Request : url=https://rahulshettyacademy.com/Library/Addbook.php 
+ path_url=/Library/Addbook.php 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '88', 'Content-Type': 'application/json'} 
+ body=b'{"name": "RobotFramework", "isbn": "947303", "aisle": "324534", "author": "rahulshetty"}' 
+ </msg>
+<msg time="2025-03-24T14:28:06.808153" level="INFO">POST Response : url=https://rahulshettyacademy.com/Library/Addbook.php 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 24 Mar 2025 18:28:06 GMT', 'Server': 'Apache/2.4.52 (Ubuntu)', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST', 'Access-Control-Max-Age': '3600', 'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With', 'Content-Length': '48', 'Keep-Alive': 'timeout=5, max=100', 'Connection': 'Keep-Alive', 'Content-Type': 'application/json;charset=UTF-8'} 
+ body={"Msg":"successfully added","ID":"947303324534"} 
+ </msg>
+<msg time="2025-03-24T14:28:06.808357" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${base_url}/Library/Addbook.php</arg>
+<arg>json=${req_body}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.063063" elapsed="0.745335"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-24T14:28:06.809575" level="INFO">{'Msg': 'successfully added', 'ID': '947303324534'}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.808742" elapsed="0.000905"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${response.json()}</arg>
+<arg>ID</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.809866" elapsed="0.000664"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-03-24T14:28:06.811370" level="INFO">${book_id} = 947303324534</msg>
+<var>${book_id}</var>
+<arg>${response.json()}</arg>
+<arg>ID</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.810734" elapsed="0.000675"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2025-03-24T14:28:06.811947" level="INFO">${book_id} = 947303324534</msg>
+<arg>${book_id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.811635" elapsed="0.000371"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-24T14:28:06.812352" level="INFO">947303324534</msg>
+<arg>${book_id}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.812187" elapsed="0.000226"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>successfully added</arg>
+<arg>${response.json()}[Msg]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.812590" elapsed="0.000608"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.813401" elapsed="0.000414"/>
+</kw>
+<tag>API</tag>
+<status status="PASS" start="2025-03-24T14:28:06.062713" elapsed="0.751363"/>
+</test>
+<test id="s1-t3" name="Get the Book Details which got added" line="33">
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-03-24T14:28:07.579132" level="INFO">GET Request : url=https://rahulshettyacademy.com/Library/GetBook.php?ID=947303324534 
+ path_url=/Library/GetBook.php?ID=947303324534 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-03-24T14:28:07.579404" level="INFO">GET Response : url=https://rahulshettyacademy.com/Library/GetBook.php?ID=947303324534 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 24 Mar 2025 18:28:07 GMT', 'Server': 'Apache/2.4.52 (Ubuntu)', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST', 'Access-Control-Max-Age': '3600', 'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With', 'Content-Length': '88', 'Keep-Alive': 'timeout=5, max=100', 'Connection': 'Keep-Alive', 'Content-Type': 'application/json;charset=UTF-8'} 
+ body=[{"book_name":"RobotFramework","isbn":"947303","aisle":"324534","author":"rahulshetty"}] 
+ </msg>
+<msg time="2025-03-24T14:28:07.581341" level="INFO">${get_response} = &lt;Response [200]&gt;</msg>
+<var>${get_response}</var>
+<arg>${base_url}/Library/GetBook.php</arg>
+<arg>params=ID=${book_id}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-03-24T14:28:06.815216" elapsed="0.766192"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-24T14:28:07.582905" level="INFO">[{'book_name': 'RobotFramework', 'isbn': '947303', 'aisle': '324534', 'author': 'rahulshetty'}]</msg>
+<arg>${get_response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-24T14:28:07.581880" elapsed="0.001319"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${book_name}</arg>
+<arg>${get_response.json()}[0][book_name]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-03-24T14:28:07.583405" elapsed="0.000801"/>
+</kw>
+<tag>API</tag>
+<status status="PASS" start="2025-03-24T14:28:06.814349" elapsed="0.770102"/>
+</test>
+<test id="s1-t4" name="Delete the Book from database" line="40">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-03-24T14:28:07.585603" level="INFO">&amp;{delete_req} = { ID=947303324534 }</msg>
+<var>&amp;{delete_req}</var>
+<arg>ID=${book_id}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-03-24T14:28:07.585232" elapsed="0.000412"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-24T14:28:08.254639" level="INFO">POST Request : url=https://rahulshettyacademy.com/Library/DeleteBook.php 
+ path_url=/Library/DeleteBook.php 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '22', 'Content-Type': 'application/json'} 
+ body=b'{"ID": "947303324534"}' 
+ </msg>
+<msg time="2025-03-24T14:28:08.254812" level="INFO">POST Response : url=https://rahulshettyacademy.com/Library/DeleteBook.php 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 24 Mar 2025 18:28:08 GMT', 'Server': 'Apache/2.4.52 (Ubuntu)', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST', 'Access-Control-Max-Age': '3600', 'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With', 'Content-Length': '38', 'Keep-Alive': 'timeout=5, max=100', 'Connection': 'Keep-Alive', 'Content-Type': 'application/json;charset=UTF-8'} 
+ body={"msg":"book is successfully deleted"} 
+ </msg>
+<msg time="2025-03-24T14:28:08.255049" level="INFO">${delete_resp} = &lt;Response [200]&gt;</msg>
+<var>${delete_resp}</var>
+<arg>${base_url}/Library/DeleteBook.php</arg>
+<arg>json=${delete_req}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-24T14:28:07.585816" elapsed="0.669285"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-24T14:28:08.256636" level="INFO">{'msg': 'book is successfully deleted'}</msg>
+<arg>${delete_resp.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-24T14:28:08.255631" elapsed="0.001097"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>book is successfully deleted</arg>
+<arg>${delete_resp.json()}[msg]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-03-24T14:28:08.257012" elapsed="0.000974"/>
+</kw>
+<tag>API</tag>
+<status status="PASS" start="2025-03-24T14:28:07.584712" elapsed="0.673590"/>
+</test>
+<status status="PASS" start="2025-03-24T14:28:05.979014" elapsed="2.279983"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="4" fail="0" skip="0">API</stat>
+</tag>
+<suite>
+<stat name="testApiSample" id="s1" pass="4" fail="0" skip="0">testApiSample</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
